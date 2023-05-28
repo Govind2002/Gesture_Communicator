@@ -18,6 +18,7 @@ float elapsedTime, currentTime, previousTime;
 
 int  c = 0;
 int pushbutton =1 ;
+int fluxsensor = A0;
 
 void  MPU_read_accel_data();
 void  MPU_read_gyro_data();
@@ -26,6 +27,7 @@ void calculate_IMU_error();
 void setup()
 {
   
+  pinMode(fluxsensor,INPUT);
   Serial.begin(9600);
   bt.begin(9600); /* Define baud rate for software serial communication */
 
@@ -45,7 +47,6 @@ void setup()
 
 void loop()
 {
-  bt.print("HELLO");
   
   MPU_read_accel_data();
   MPU_read_gyro_data();
@@ -84,27 +85,30 @@ void loop()
     Serial.println(" ");*/
     
 if(pushbutton){
-    if(pitch<-17){
+    if(analogRead(fluxsensor)<600){
       Serial.println("PLEASE HELP");
-      bt.print("PLEASE HELP");
+      bt.print("1");
     }else if(pitch>20){
       Serial.println("HELLO");
-      bt.write("HELLO");
+      bt.write("2");
     }else if(roll>30){
       Serial.println("MY NAME IS JOHN");
-      bt.print("MY NAME IS JOHN");
+      bt.print("3");
     }else if(roll<-30){
       Serial.println("HAVE A NICE DAY");
-      bt.print("HAVE A NICE DAY");
+      bt.print("4");
     }else if(yaw>30){
       Serial.println("I NEED WATER");
       bt.print("I NEED WATER");
     }else if(yaw<-30){
       Serial.println("THANK YOU");
       bt.print("THANK YOU");
-    }else 
+    }else if(pitch<-17){
+      Serial.println("PLEASE HELP");
+      bt.print("PLEASE HELP");
+    }else{ 
       Serial.println("waiting for command...");
-      bt.print("waiting for command...");
+      bt.print("waiting for command...");}
 
      Serial.println(" ");
   
@@ -225,7 +229,6 @@ void calculate_IMU_error()
 
   delay(1000);
 }
-
 
 
 

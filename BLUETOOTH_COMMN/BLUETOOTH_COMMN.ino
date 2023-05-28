@@ -4,15 +4,14 @@
 SoftwareSerial bt(10,11); /* (Rx,Tx) */  
 
 void setup() {
-  bt.begin(115200); /* Define baud rate for software serial communication */
-  Serial.begin(115200); /* Define baud rate for serial communication */
+  bt.begin(9600); /* Define baud rate for software serial communication */
+  Serial.begin(9600); /* Define baud rate for serial communication */
 }
 
 void loop() {
   
     if (bt.available()) /* If data is available on serial port */
     {
-     Serial.write(bt.read());
-     Serial.println(bt.available());/* Print character received on to the serial monitor */
+     Serial.write(bt.read());/* Print character received on to the serial monitor */
     }
 }
