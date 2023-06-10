@@ -23,7 +23,7 @@ void setup()
  }
 
  tmrpcm.setVolume(5); //
- tmrpcm.play("song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+ tmrpcm.play("kesariya.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
                           //try to provide the file name with extension
                      
 }
@@ -31,49 +31,19 @@ void setup()
 
 void loop()
 {  
-  while(digitalRead(pp)==0 || digitalRead(next)==0 || digitalRead(prev)==0)
-  {
-    if(digitalRead(pp)==0)
-    {
-      tmrpcm.pause();
-      while(digitalRead(pp)==0);
-      delay(200);
+  if(Serial.available()){    
+    if(Serial.read() == 'p'){ //send the letter p over the serial monitor to start playback
+      tmrpcm.play("song4.wav");
     }
-    else if(digitalRead(next)==0)
-    {
-      if(temp<4)//temp should be lesser than no. of songs 
-      temp=temp+1;
-      while(digitalRead(next)==0);
-      delay(200);
-      song();
+    if(Serial.read() == 'k'){ //send the letter p over the serial monitor to start playback
+      tmrpcm.play("song2.wav");
     }
-    else if(digitalRead(prev)==0)
-    {
-      if(temp>1)
-      temp=temp-1;
-      while(digitalRead(prev)==0);
-      delay(200);
-      song();
+    if(Serial.read() == 'l'){ //send the letter p over the serial monitor to start playback
+      tmrpcm.play("song3.wav");
+    }
+    if(Serial.read() == 'm'){ //send the letter p over the serial monitor to start playback
+      tmrpcm.play("song4.wav");
     }
   }
-}
 
-void song (void)
-{
-  if(temp==1)
-  {
-    tmrpcm.play("Song1.wav");  
-  }
-  else if(temp==2)
-  {
-    tmrpcm.play("Song2.wav");  
-  }
-  else if(temp==3)
-  {
-    tmrpcm.play("Song3.wav");  
-  }
-  else if(temp==4)
-  {
-    tmrpcm.play("Song4.wav");  
-  }
 }

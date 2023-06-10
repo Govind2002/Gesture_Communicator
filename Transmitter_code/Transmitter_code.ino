@@ -2,7 +2,7 @@
 #include<SoftwareSerial.h>
 
 /* Create object named bt of the class SoftwareSerial */ 
-SoftwareSerial bt(10,11); /* (Rx,Tx) */ 
+SoftwareSerial bt(10,11); /* (Rx of Arduino,Tx of Arduino)( connect 10 to Bt Tx and 11 to Bt Rx */ 
 
 const  int MPU_ADDRESS = 0x68; // MPU6050 I2C address
 
@@ -17,7 +17,7 @@ float AccErrorX, AccErrorY, GyroErrorX,  GyroErrorY, GyroErrorZ;
 float elapsedTime, currentTime, previousTime;
 
 int  c = 0;
-int pushbutton =1 ;
+int pushbutton = 1;
 int flexsensor = A0;
 
 void  MPU_read_accel_data();
