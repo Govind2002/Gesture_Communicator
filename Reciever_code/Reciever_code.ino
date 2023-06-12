@@ -19,10 +19,12 @@ void setup() {
 
 void  loop() {
   if(bt.available()>0){  
-   message=bt.read();} 
+   message=bt.read();
+  } 
 
    Serial.println(message);
    lcddisplay(message);
+    
 
    /*switch(message){
     case 1:
@@ -77,19 +79,27 @@ void lcddisplay(int b)
   lcd.setCursor(0,0); //Defining positon to write from first row,first column .
   
   switch(b){
-  case 49:lcd.print("PLEASE HELP"); //You can write 16 Characters per line .
+  case 49:lcd.print("PLEASE HELP");
+  Serial.println("message");
+  delay(10);//You can write 16 Characters per line .
   break;
   case 50:lcd.print("HELLO");
+  delay(10);
   break;
   case 51:lcd.print("MY NAME IS JOHN");
+  delay(10);
   break;
   case 52:lcd.print("HAVE A NICE DAY");
+  delay(10);
   break;
   case 53:lcd.print("I NEED WATER");
+  delay(10);
   break;
   case 54:lcd.print("THANK YOU");
+  delay(10);
   break;
   case 55:lcd.print("waiting for command...");
+  delay(10);
   }
 
   lcd.clear();//Clean the screen

@@ -31,19 +31,24 @@ void setup()
 
 void loop()
 {  
-  if(Serial.available()){    
-    if(Serial.read() == 'p'){ //send the letter p over the serial monitor to start playback
-      tmrpcm.play("song4.wav");
-    }
-    if(Serial.read() == 'k'){ //send the letter p over the serial monitor to start playback
-      tmrpcm.play("song2.wav");
-    }
-    if(Serial.read() == 'l'){ //send the letter p over the serial monitor to start playback
-      tmrpcm.play("song3.wav");
-    }
-    if(Serial.read() == 'm'){ //send the letter p over the serial monitor to start playback
-      tmrpcm.play("song4.wav");
-    }
+if (Serial.available()) {
+  char receivedChar = Serial.read();
+  
+  if (receivedChar == 'p') {
+    tmrpcm.play("high.wav");
+    Serial.println("2");
   }
-
+  else if (receivedChar == 'l') {
+    tmrpcm.play("high_1.wav");
+    Serial.println("3");
+  }
+  else if (receivedChar == 'm') {
+    tmrpcm.play("auto.wav");
+    Serial.println("4");
+  }
+  else if (receivedChar == 't') {
+    tmrpcm.play("last.wav");
+    Serial.println("4");
+}
+  }
 }
