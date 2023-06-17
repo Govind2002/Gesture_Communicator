@@ -1,9 +1,15 @@
 #include <SoftwareSerial.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
+#include <SD.h> // need to include the SD library
+#define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
+#include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
+#include <SPI.h> //  need to include the SPI library
+
 
 LiquidCrystal_I2C lcd(0x27,16,2); 
 SoftwareSerial bt(10, 11); //  CONNECT BT RX PIN TO ARDUINO 11 PIN | CONNECT BT TX PIN TO ARDUINO 10 PIN
+TMRpcm tmrpcm; // create an object for use in this sketch
 
 int message=0;
 
@@ -11,11 +17,23 @@ void lcddisplay();
 
 
 void setup() {
+  
   Serial.begin(9600);      
   bt.begin(9600);
+  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
+  tmrpcm.setVolume(5);
   lcd.begin(16,2);//Defining 16 columns and 2 rows of lcd display
   lcd.backlight();//To Power ON the back light
-  }
+  
+
+  if (!SD.begin(SD_ChipSelectPin)) // returns 1 if the card is present
+ {
+  Serial.println("SD fail"); //for debug
+  return;
+ }
+
+}
+
 
 void  loop() {
   if(bt.available()>0){  
@@ -23,56 +41,12 @@ void  loop() {
   } 
 
    Serial.println(message);
+   speaker(message);
    lcddisplay(message);
-    
+   
 
-   /*switch(message){
-    case 1:
-    lcddisplay("HELP");
-    break;
+}   
 
-    case 2:
-    lcddisplay("HELLO");
-    break;
-
-    case 3:
-    lcddisplay("Hiiii");
-    break;
-
-    case 4:
-    lcddisplay("THANK YOU");
-    break;
-
-    case 5:
-    lcddisplay("I Need Water");
-    break;
-
-    case 6:
-    lcddisplay("Welcome");
-    break;
-
-    case 7:
-    lcddisplay("Have a nice day");
-    break;
-
-    case 8:
-    lcddisplay("Bye");
-    break;
-
-    default:
-    lcddisplay("waiting for command");
-   }*/
-
-
-
-}
-
-/*void lcddisplay(char a){
-  lcd.setCursor(0,0); //Defining positon to write from first row,first column .
-  lcd.print(a); //You can write 16 Characters per line .
-  delay(1000);//Delay used to give a dynamic effect
-  lcd.clear();//Clean the screen
-  }*/
 
 void lcddisplay(int b)
 {
@@ -107,5 +81,31 @@ void lcddisplay(int b)
   
 }
 
-//void speaker{
- // }
+void speaker(int b){
+
+  switch(b){
+  case 49:tmrpcm.play("1.wav");
+  break;
+
+  case 50:tmrpcm.play("2.wav");
+  break;
+
+  case 51:tmrpcm.play("3.wav");
+  break;
+
+  case 52:tmrpcm.play("4.wav");
+  break;
+
+  case 53:tmrpcm.play("5.wav");
+  break;
+
+  case 54:tmrpcm.play("6.wav");
+  break;
+
+  case 55:tmrpcm.play("7.wav");
+  break;
+
+  }
+
+  
+ }
