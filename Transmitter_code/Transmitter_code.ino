@@ -85,12 +85,12 @@ void loop()
     Serial.println("");*/
     
 if(pushbutton){
-    if(analogRead(flexsensor)>800){
+    if(analogRead(flexsensor)>500){
       Serial.println("PLEASE HELP");
       bt.print("1");
     }else if(pitch>20){
       Serial.println("HELLO");
-      bt.write("2");
+      bt.print("2");
     }else if(roll>30){
       Serial.println("MY NAME IS JOHN");
       bt.print("3");
@@ -99,16 +99,16 @@ if(pushbutton){
       bt.print("4");
     }else if(yaw>30){
       Serial.println("I NEED WATER");
-      bt.print("I NEED WATER");
+      bt.print("5");
     }else if(yaw<-30){
       Serial.println("THANK YOU");
-      bt.print("THANK YOU");
+      bt.print("6");
     }else if(pitch<-17){
       Serial.println("HUNGRY");
-      bt.print("HUNGRY");
+      bt.print("7");
     }else{ 
       Serial.println("waiting for command...");
-      bt.print("waiting for command...");}
+      bt.print("8");}
 
      Serial.println(" ");
   

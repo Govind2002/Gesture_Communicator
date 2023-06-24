@@ -76,8 +76,8 @@ void loop()
     Serial.println(yaw);
 
     Serial.println(" ");*/
-    
-if(pushbutton){
+
+    if(pushbutton){
     if(pitch<-17){
       Serial.println("PLEASE HELP");
     }else if(pitch>20){
@@ -97,6 +97,7 @@ if(pushbutton){
   
     
     }
+
      
 }
 

@@ -1,54 +1,47 @@
-#include <SoftwareSerial.h>
-#include <Wire.h> 
+#include<SoftwareSerial.h>
 #include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
 #include <SD.h> // need to include the SD library
 #define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
 #include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
 #include <SPI.h> //  need to include the SPI library
 
-LiquidCrystal_I2C lcd(0x27,16,2); 
-SoftwareSerial bt(10, 8); //  CONNECT BT RX PIN TO ARDUINO 11 PIN | CONNECT BT TX PIN TO ARDUINO 10 PIN
 TMRpcm tmrpcm; // create an object for use in this sketch
+
+/* Create object named bt of the class SoftwareSerial */ 
+SoftwareSerial bt(10,8); /* (Rx,Tx) */  
+
 int message;
 
-/*SD card connections
-MISO - 12 (MISO of Master to MISO of Slave)
-MOSI - 11  
-SCK  - 13
-CS   - 4
-*/
-
 void setup() {
-  
-  Serial.begin(9600);      
-  bt.begin(9600);
-  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
-  tmrpcm.setVolume(5);
+  bt.begin(9600); /* Define baud rate for software serial communication */
+  Serial.begin(9600); /* Define baud rate for serial communication */ 
   lcd.begin(16,2);//Defining 16 columns and 2 rows of lcd display
   lcd.backlight();//To Power ON the back light
-  
+
+  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
 
   if (!SD.begin(SD_ChipSelectPin)) // returns 1 if the card is present
  {
-  Serial.println("SD fail"); //for debug
- } else {
-  Serial.println("SD success");
+  Serial.println("SD fail");
  }
 
+ tmrpcm.setVolume(5); //
+ tmrpcm.play("help.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                          //try to provide the file name with extension
 }
 
-
-void  loop() {          
-  bt.begin(9600); 
-  if(bt.available()>0){  
+void loop() {
+  
+    if (bt.available()) /* If data is available on serial port */
+    {
    message=bt.read();
-   Serial.println(String(message));
-  } 
-
-//   Serial.println("message");
-   speaker(message);
-   lcddisplay(message);
-}   
+   Serial.println(message);
+     
+    }
+    lcddisplay(message);
+  
+}
 
 
 void lcddisplay(int b)
@@ -57,6 +50,7 @@ void lcddisplay(int b)
   
   switch(b){
   case 49:lcd.print("PLEASE HELP");
+  Serial.println("message");
   delay(10);//You can write 16 Characters per line .
   break;
   case 50:lcd.print("HELLO");
@@ -75,8 +69,6 @@ void lcddisplay(int b)
   delay(10);
   break;
   case 55:lcd.print("waiting for command...");
-  delay(10);
-  case 56:lcd.print("waiting for command...");
   delay(10);
   }
 

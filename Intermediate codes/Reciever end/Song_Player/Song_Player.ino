@@ -4,15 +4,15 @@
 #include <SPI.h> //  need to include the SPI library
 
 TMRpcm tmrpcm; // create an object for use in this sketch
-int temp=1;
+/*int temp=1;
 int pp=5;
 int next=6;
-int prev=7;
+int prev=7;*/
 void setup()
 { 
- pinMode(pp,INPUT_PULLUP);
+ /*pinMode(pp,INPUT_PULLUP);
  pinMode(next,INPUT_PULLUP);
- pinMode(prev,INPUT_PULLUP);
+ pinMode(prev,INPUT_PULLUP);*/
  
  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
  Serial.begin(9600);
@@ -23,7 +23,7 @@ void setup()
  }
 
  tmrpcm.setVolume(5); //
- tmrpcm.play("kesariya.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+ tmrpcm.play("test.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
                           //try to provide the file name with extension
                      
 }
@@ -35,19 +35,19 @@ if (Serial.available()) {
   char receivedChar = Serial.read();
   
   if (receivedChar == 'p') {
-    tmrpcm.play("high.wav");
+    tmrpcm.play("road.wav");
     Serial.println("2");
   }
-  else if (receivedChar == 'l') {
-    tmrpcm.play("high_1.wav");
+  else if (receivedChar == 'q') {
+    tmrpcm.play("help.wav");
     Serial.println("3");
   }
-  else if (receivedChar == 'm') {
-    tmrpcm.play("auto.wav");
+  else if (receivedChar == 'r') {
+    tmrpcm.play("water.wav");
     Serial.println("4");
   }
-  else if (receivedChar == 't') {
-    tmrpcm.play("last.wav");
+  else if (receivedChar == 's') {
+    tmrpcm.play("qn.wav");
     Serial.println("4");
 }
   }
