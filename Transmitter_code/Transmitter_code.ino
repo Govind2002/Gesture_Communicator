@@ -87,28 +87,28 @@ void loop()
 if(pushbutton){
     if(analogRead(flexsensor)>500){
       Serial.println("PLEASE HELP");
-      bt.print("1");
+      bt.print("2");
     }else if(pitch>20){
       Serial.println("HELLO");
-      bt.print("2");
-    }else if(roll>30){
-      Serial.println("MY NAME IS JOHN");
       bt.print("3");
-    }else if(roll<-30){
-      Serial.println("HAVE A NICE DAY");
+    }else if(roll>30){
+      Serial.println("I NEED ASSISTANCE");
       bt.print("4");
+    }else if(roll<-30){
+      Serial.println("PEN AND PAPER PLEASE");
+      bt.print("5");
     }else if(yaw>30){
       Serial.println("I NEED WATER");
-      bt.print("5");
+      bt.print("8");
     }else if(yaw<-30){
       Serial.println("THANK YOU");
-      bt.print("6");
+      bt.print("9");
     }else if(pitch<-17){
-      Serial.println("HUNGRY");
+      Serial.println("HUNGRY"); //EDUKK ORU SNICKERS
       bt.print("7");
     }else{ 
       Serial.println("waiting for command...");
-      bt.print("8");}
+      bt.print("6");}
 
      Serial.println(" ");
   

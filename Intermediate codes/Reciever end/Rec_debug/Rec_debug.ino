@@ -9,7 +9,7 @@
 LiquidCrystal_I2C lcd(0x27,16,2); 
 SoftwareSerial bt(10, 8); //  CONNECT BT RX PIN TO ARDUINO 11 PIN | CONNECT BT TX PIN TO ARDUINO 10 PIN
 TMRpcm tmrpcm; // create an object for use in this sketch
-int message;
+int message = 49;
 
 /*SD card connections
 MISO - 12 (MISO of Master to MISO of Slave)
@@ -46,7 +46,7 @@ void  loop() {
   } 
 
 //   Serial.println("message");
-   //speaker(message);
+   tmrpcm.play("road.wav");
    lcddisplay(message);
    //speaker(message);
 }   
@@ -88,29 +88,11 @@ void lcddisplay(int b)
 
 void speaker(int b){
 
-  switch(b){
-  case 49:tmrpcm.play("road.wav");
-  break;
+  
 
-  case 50:tmrpcm.play("name.wav");
-  break;
-
-  case 51:tmrpcm.play("qn.wav");
-  break;
-
-  case 52:tmrpcm.play("road.wav");
-  break;
-
-  case 53:tmrpcm.play("road.wav");
-  break;
-
-  case 54:tmrpcm.play("road.wav");
-  break;
-
-  case 55:tmrpcm.play("road.wav");
-  break;
-
-  }
+}
 
   
- }
+
+  
+ 

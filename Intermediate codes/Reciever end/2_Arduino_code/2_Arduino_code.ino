@@ -3,9 +3,9 @@
 LiquidCrystal_I2C lcd(0x27,16,2);
 
 /* Create object named bt of the class SoftwareSerial */ 
-SoftwareSerial bt(10,8); /* (Rx,Tx) */  
+SoftwareSerial bt(3,11); /* (Rx,Tx) */  
 
-int message = 49;
+int message;
 
 void setup() {
   bt.begin(9600); /* Define baud rate for software serial communication */
@@ -15,14 +15,15 @@ void setup() {
 }
 
 void loop() {
-  
+   bt.begin(9600);
     if (bt.available()) /* If data is available on serial port */
     {
    message=bt.read();
-   Serial.println(message);
+   Serial.print(message);
      
     }
     lcddisplay(message);
+    delay(10);
   
 }
 
@@ -32,25 +33,30 @@ void lcddisplay(int b)
   lcd.setCursor(0,0); //Defining positon to write from first row,first column .
   
   switch(b){
-  case 49:lcd.print("PLEASE HELP");
+  case 50:lcd.print("PLEASE HELP");
   delay(10);//You can write 16 Characters per line .
   break;
-  case 50:lcd.print("HELLO");
+  case 51:lcd.print("HELLO");
   delay(10);
   break;
-  case 51:lcd.print("MY NAME IS JOHN");
+  case 52:lcd.print("I NEED ASSISTANCE");
   delay(10);
   break;
-  case 52:lcd.print("HAVE A NICE DAY");
+  case 53:lcd.print("PEN AND PAPER PLEASE");
   delay(10);
   break;
-  case 53:lcd.print("I NEED WATER");
+  case 56:lcd.print("I NEED WATER");
   delay(10);
   break;
-  case 54:lcd.print("THANK YOU");
+  case 57:lcd.print("THANK YOU");
   delay(10);
   break;
-  case 55:lcd.print("waiting for command...");
+  case 55:lcd.print("HUNGRY");
+  delay(10);
+  break;
+  default:lcd.print("  waiting for   ");
+  lcd.setCursor(0,1);
+  lcd.print("    command ");
   delay(10);
   }
 

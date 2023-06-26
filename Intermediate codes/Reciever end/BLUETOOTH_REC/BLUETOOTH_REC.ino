@@ -1,7 +1,7 @@
 #include<SoftwareSerial.h>
 
 /* Create object named bt of the class SoftwareSerial */ 
-SoftwareSerial bt(10,8); /* (Rx,Tx) */  
+SoftwareSerial bt(3,11); /* (Rx,Tx) */  
 
 void setup() {
   bt.begin(9600); /* Define baud rate for software serial communication */
