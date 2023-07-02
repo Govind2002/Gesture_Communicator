@@ -1,8 +1,8 @@
 PLEASE HELP - 2     help
 HELLO - 3                name
 I NEED ASSISTANCE - 4       road
-PEN AND PAPER PLEASE - 5    qn
+PEN AND PAPER PLEASE - 5    pen_paper
 I NEED WATER - 8            water
-THANK YOU - 9             thank_you
+THANK YOU - 9             
 HUNGRY - 7
 waiting for command... - 6

@@ -23,7 +23,7 @@ void setup()
  }
 
  tmrpcm.setVolume(3); //
- tmrpcm.play("thank_you.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+ tmrpcm.play("road.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
                           //try to provide the file name with extension
                      
 }

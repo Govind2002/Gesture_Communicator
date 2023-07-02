@@ -21,7 +21,7 @@ if (!SD.begin(SD_ChipSelectPin)) // returns 1 if the card is present
   return;
  }
 
- tmrpcm.setVolume(3); 
+ tmrpcm.setVolume(5); 
 
 }
 
@@ -54,19 +54,19 @@ void speaker(int b){
   case 50:tmrpcm.play("road.wav");
   break;
 
-  case 51:tmrpcm.play("qn.wav");
+  case 51:tmrpcm.play("pen_paper.wav");
   break;
 
   case 54:tmrpcm.play("water.wav");
   break;
 
-  case 55:tmrpcm.play("thank_you.wav");
+  case 55:tmrpcm.play("qn.wav");
   break;
 
 //  case 53:tmrpcm.play("road.wav");
 //  break;
 
-  default:Serial.println(message);
+  //default:Serial.println(message);
 
   }
 

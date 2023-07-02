@@ -39,10 +39,14 @@ void lcddisplay(int b)
   case 51:lcd.print("HELLO");
   delay(10);
   break;
-  case 52:lcd.print("I NEED ASSISTANCE");
+  case 52:lcd.print("  I NEED   ");
+  lcd.setCursor(0,1); 
+  lcd.print(" ASSISTANCE ");
   delay(10);
   break;
-  case 53:lcd.print("PEN AND PAPER PLEASE");
+  case 53:lcd.print(" PEN AND PAPER ");
+  lcd.setCursor(0,1);
+  lcd.print("  PLEASE  ");
   delay(10);
   break;
   case 56:lcd.print("I NEED WATER");
