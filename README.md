@@ -24,9 +24,6 @@ A gesture-based communication device designed to help people with sensory impair
 3. The Arduino Uno receives the command and displays the corresponding message on the LCD.
 4. The associated prerecorded audio message is played through the speaker.
 
-## Documentation
-Project report and presentation can be added to the `docs/` directory.
-
 ## Contributors
 - Govind U
 - S. Neha
